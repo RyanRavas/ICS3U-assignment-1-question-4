@@ -17,7 +17,7 @@ public class Main {
         String yearlyInvestmentString;
         String investmentDiffrenceString;
 //      loop program until user says "no"
-        int loopInput = 1;
+        int loopInput;
         do {
 //          get user input for all required variable values
             principle = Double.parseDouble(JOptionPane.showInputDialog(null,"Enter the principle amount in $", "Investment Program", JOptionPane.QUESTION_MESSAGE));
@@ -25,15 +25,15 @@ public class Main {
             numberOfYears = Double.parseDouble((JOptionPane.showInputDialog(null,"Enter number of years", "Investment Program", JOptionPane.QUESTION_MESSAGE)));
 
 //          calculate return for both monthly and yearly compounding
-            monthlyInvestmentReturn = investment(principle, interestRatePercent, numberOfYears, "monthly");
-            yearlyInvestmentReturn = investment(principle, interestRatePercent, numberOfYears, "yearly");
-//
-            monthlyInvestmentString = String.format("$%.2f invested at %.1f%% compounded yearly for %.1f years returns: $%.2f\n",
-                    principle, interestRatePercent, numberOfYears, yearlyInvestmentReturn);
-            yearlyInvestmentString = String.format("$%.2f invested at %.1f%% compounded monthly for %.1f years returns: $%.2f\n",
-                    principle, interestRatePercent, numberOfYears, monthlyInvestmentReturn);
+            monthlyInvestmentReturn = calculateInvestment(principle, interestRatePercent, numberOfYears, "monthly");
+            yearlyInvestmentReturn = calculateInvestment(principle, interestRatePercent, numberOfYears, "yearly");
+//          Format string outputs
+            monthlyInvestmentString = String.format("$%.2f invested at %.1f%% compounded yearly for %.1f years returns: $%.2f",
+                                                    principle, interestRatePercent, numberOfYears, yearlyInvestmentReturn);
+            yearlyInvestmentString = String.format("$%.2f invested at %.1f%% compounded monthly for %.1f years returns: $%.2f",
+                                                    principle, interestRatePercent, numberOfYears, monthlyInvestmentReturn);
             investmentDiffrenceString = String.format("The investment compounding monthly will earn $%.2f more than the investment compounding yearly",
-                    monthlyInvestmentReturn - yearlyInvestmentReturn);
+                                                       monthlyInvestmentReturn - yearlyInvestmentReturn);
             JOptionPane.showMessageDialog(null, monthlyInvestmentString, "Investment Program", JOptionPane.INFORMATION_MESSAGE);
             JOptionPane.showMessageDialog(null, yearlyInvestmentString, "Investment Program", JOptionPane.INFORMATION_MESSAGE);
             JOptionPane.showMessageDialog(null, investmentDiffrenceString, "Investment Program", JOptionPane.INFORMATION_MESSAGE);
@@ -41,12 +41,12 @@ public class Main {
 //          yes returns 0
 //          no returns 1
             loopInput = JOptionPane.showConfirmDialog(null,
-                    "Would you like to go again",
-                    "Investment Program",
-                    JOptionPane.YES_NO_OPTION);
+                        "Would you like to go again",
+                        "Investment Program",
+                        JOptionPane.YES_NO_OPTION);
         } while (loopInput != 1);
     }
-    public static double investment(double principle, double interestRatePercent, double numberOfYears, String compoundType) {
+    public static double calculateInvestment(double principle, double interestRatePercent, double numberOfYears, String compoundType) {
         if (compoundType.equalsIgnoreCase("yearly")) {
             return principle * Math.pow(1 + (interestRatePercent / 100),
                     numberOfYears);
