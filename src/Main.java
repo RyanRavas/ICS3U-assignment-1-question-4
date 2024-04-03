@@ -41,18 +41,18 @@ public class Main {
 //          yes returns 0
 //          no returns 1
             loopInput = JOptionPane.showConfirmDialog(null,
-                        "Would you like to go again",
-                        "Investment Program",
-                        JOptionPane.YES_NO_OPTION);
+                                                      "Would you like to go again",
+                                                      "Investment Program",
+                                                      JOptionPane.YES_NO_OPTION);
         } while (loopInput != 1);
     }
     public static double calculateInvestment(double principle, double interestRatePercent, double numberOfYears, String compoundType) {
         if (compoundType.equalsIgnoreCase("yearly")) {
             return principle * Math.pow(1 + (interestRatePercent / 100),
-                    numberOfYears);
+                                        numberOfYears);
         } else if (compoundType.equalsIgnoreCase("monthly")) {
             return principle * Math.pow(1 + ( (interestRatePercent / 100) / 12),
-                    numberOfYears * 12);
+                                        numberOfYears * 12);
         } else {
             return 0;
         }
