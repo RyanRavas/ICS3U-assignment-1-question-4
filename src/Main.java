@@ -45,6 +45,7 @@ public class Main {
                                                       "Investment Program",
                                                       JOptionPane.YES_NO_OPTION);
         } while (loopInput != 1);
+        System.exit(0);
     }
     public static double calculateInvestment(double principle, double interestRatePercent, double numberOfYears, String compoundType) {
         if (compoundType.equalsIgnoreCase("yearly")) {
